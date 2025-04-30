@@ -1,0 +1,11 @@
+.best-seller-section {
+    position: relative;
+    margin-top: 5em;
+    height: 65vh !important;
+    overflow: hidden;
+}
+
+.best-seller-title{
+    top: 30%;
+    left: 5vw
+}

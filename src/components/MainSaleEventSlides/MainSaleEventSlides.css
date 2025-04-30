@@ -1,0 +1,43 @@
+.sale-event-swipper {
+    width: 100%;
+    height: 100%;
+}
+
+.sale-event-swipper-section{
+    height: 90%;
+}
+
+.sale-event-section {
+    margin-top: 4rem;
+    height: 530px;
+}
+
+.sale-event-swipper {
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.navigation-button-group {
+    padding: 10px 4rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5em
+}
+
+.button-prev {
+    padding: 5px;
+    color: white;
+    border-radius: 1rem;
+    background-color: black;
+}
+
+.button-next {
+    padding: 5px;
+    border-radius: 1rem;
+    background-color: black;
+    color: white
+}
+
+.section-swipper-name{
+    padding: 10px 4rem;
+}

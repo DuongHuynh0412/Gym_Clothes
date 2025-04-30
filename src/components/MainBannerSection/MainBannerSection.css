@@ -1,0 +1,17 @@
+.banner {
+    position: relative;
+    height: 39em;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.background-video{
+    position: absolute;
+    top: -10em
+}
