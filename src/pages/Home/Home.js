@@ -7,11 +7,13 @@ function Home() {
         <>
             <MainBannerSection/>
             <MainSaleEventSlides
+                folder={'mid-season-image'}
                 id={'main-sale-event-slides'}
             />
             <div>
                 <MainSaleEventSlides
                     id={'Mid-Season-Sale'}
+                    folder={'mid-season-image'}
                     SectionTitle={() => {
                         return (
                             <>
@@ -26,6 +28,7 @@ function Home() {
             <div>
                 <MainSaleEventSlides
                     id={'POPULAR-RIGHT-NOW'}
+                    folder={'mid-season-image'}
                     SectionTitle={() => {
                         return (
                             <>
@@ -39,6 +42,7 @@ function Home() {
             <div>
                 <MainSaleEventSlides
                     id={'How-do-you-train'}
+                    folder={'mid-season-image'}
                     SectionTitle={() => {
                         return (
                             <>
@@ -52,6 +56,7 @@ function Home() {
             <div>
                 <MainSaleEventSlides
                     id={'WAIT-THERE’S-MORE…'}
+                    folder={'mid-season-image'}
                     SectionTitle={() => {
                         return (
                             <>

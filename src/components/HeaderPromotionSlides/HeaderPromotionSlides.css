@@ -23,8 +23,7 @@
 
 .slide-item{
     font-family: inherit;
-    color: black;
-    font-weight: 700;
+    color: black !important;
     font-size: small;
 }
 
@@ -34,13 +33,15 @@
 
 .promotion-slider{
     /*top: 3.5em*/
+    background-color: inherit;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
 
 .promotion-slider-section{
     display: flex;
-    align-items: center
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 .control-button{

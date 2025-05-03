@@ -1,6 +1,6 @@
 .banner {
     position: relative;
-    height: 39em;
+    height: 35em;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -13,5 +13,5 @@
 
 .background-video{
     position: absolute;
-    top: -10em
+    /*top: -10em*/
 }

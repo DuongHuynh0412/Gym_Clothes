@@ -1,18 +1,18 @@
-.sale-event-swipper {
+.product-type-swipper {
     width: 100%;
     height: 100%;
 }
 
-.sale-event-swipper-section{
-    height: 90%;
+.product-type-swipper-section{
+    height: 70%;
 }
 
-.sale-event-section {
+.product-type-section {
     margin-top: 4rem;
     height: 530px;
 }
 
-.sale-event-swipper {
+.product-type-swipper {
     padding-left: 4rem;
     padding-right: 4rem;
 }
@@ -25,6 +25,7 @@
 }
 
 .button-prev {
+    cursor: pointer !important;
     padding: 0.6em !important;
     color: white;
     border-radius: 2rem !important;
@@ -33,6 +34,7 @@
 
 
 .button-next {
+    cursor: pointer !important;
     padding: 0.6em !important;
     border-radius: 2rem !important;
     background-color: black !important;
@@ -40,6 +42,7 @@
 }
 
 .swiper-button-disabled{
+    cursor: not-allowed !important;
     background-color: rgba(0, 0, 0, 0.3) !important;
     color: white !important;
 }

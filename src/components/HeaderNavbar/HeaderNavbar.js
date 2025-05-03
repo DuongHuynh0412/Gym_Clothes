@@ -1,11 +1,10 @@
 import {Box, Flex, IconButton, Link, TextField} from "@radix-ui/themes";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import {ClockIcon, HeartIcon, LockClosedIcon, MagnifyingGlassIcon, PersonIcon} from "@radix-ui/react-icons";
 
 export default function HeaderNavbar() {
     return (
         <>
-            <Flex className="header_navbar" align="center" justify="between" px="6" py="4">
+            <Flex className="header_navbar" align="center" justify="between" px="6">
                 <Link className="flex items-center cursor-pointer logo" href="/">
                     <img
                         src="./gymshark-logo.svg"
@@ -169,22 +168,22 @@ export default function HeaderNavbar() {
                     <NavigationMenu.Viewport className="absolute left-0 top-full"/>
                 </NavigationMenu.Root>
 
-                <div className="flex gap-1 items-center">
-                    <Box>
-                        <TextField.Root placeholder="Search the docs…" size="1">
-                            <TextField.Slot>
-                                <MagnifyingGlassIcon height="16" width="16"/>
-                            </TextField.Slot>
-                        </TextField.Root>
-                    </Box>
+                {/*<div className="flex gap-1 items-center">*/}
+                {/*    <Box>*/}
+                {/*        <TextField.Root placeholder="Search the docs…" size="1">*/}
+                {/*            <TextField.Slot>*/}
+                {/*                <MagnifyingGlassIcon height="16" width="16"/>*/}
+                {/*            </TextField.Slot>*/}
+                {/*        </TextField.Root>*/}
+                {/*    </Box>*/}
 
-                    {/* Icons on the Right */}
-                    <div className="flex gap-6">
-                        <HeartIcon/>
-                        <PersonIcon/>
-                        <LockClosedIcon/>
-                    </div>
-                </div>
+                {/*    /!* Icons on the Right *!/*/}
+                {/*    <div className="flex gap-6">*/}
+                {/*        <HeartIcon/>*/}
+                {/*        <PersonIcon/>*/}
+                {/*        <LockClosedIcon/>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </Flex>
             <div style={{height: '3.5em', width: '100%'}}></div>
         </>

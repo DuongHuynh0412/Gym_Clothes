@@ -8,9 +8,9 @@ import {Swiper, SwiperSlide} from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 
-import "./MainSaleEventSlides.css"
+import "./MainProductTypeSlides.css"
 
-export default function MainSaleEventSlides({id, SectionTitle, folder}) {
+export default function MainProductTypeSlides({id, SectionTitle, folder}) {
 
     const promos = [
         {
@@ -63,7 +63,7 @@ export default function MainSaleEventSlides({id, SectionTitle, folder}) {
     }
 
     return (
-        <section className="sale-event-section">
+        <section className="product-type-section">
             {
                 SectionTitle && (
                     <SectionTitle/>
@@ -77,10 +77,10 @@ export default function MainSaleEventSlides({id, SectionTitle, folder}) {
                     <ChevronRightIcon/>
                 </Button>
             </section>
-            <section className={'sale-event-swipper-section'}>
+            <section className={'product-type-swipper-section'}>
                 <Swiper
-                    className="sale-event-swipper"
-                    slidesPerView={4}
+                    className="product-type-swipper"
+                    slidesPerView={6.3}
                     modules={[Navigation]}
                     spaceBetween={5}
                     navigation={navigationOptions}

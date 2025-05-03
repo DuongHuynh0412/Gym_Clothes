@@ -1,0 +1,13 @@
+.product-size-option{
+    border: 1px solid gray;
+    color: gray;
+    padding: 0;
+    margin-right: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.product-size-option:hover{
+    border: 1px solid #4e4e4e !important;
+    color: #4e4e4e !important;
+}

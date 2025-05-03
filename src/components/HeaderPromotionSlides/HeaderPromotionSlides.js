@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import {PauseIcon, PlayIcon} from '@radix-ui/react-icons';
 import './HeaderPromotionSlides.css';
 import {Pagination, Autoplay, Navigation} from 'swiper/modules';
-import {Box, Link} from '@radix-ui/themes';
+import {Box, Flex, Link, Text} from '@radix-ui/themes';
 import {useState, useRef} from 'react';
 
 export default function HeaderPromotionSlides() {
@@ -36,28 +36,28 @@ export default function HeaderPromotionSlides() {
     };
 
     return (
-        <Box className="promotion-slider-section">
+        <Flex className="promotion-slider-section">
             <Swiper
-                ref={swiperRef} // Attach Swiper ref
+                ref={swiperRef}
                 direction={'vertical'}
                 slidesPerView={1}
                 spaceBetween={10}
                 autoplay={
                     pause
-                        ? false // Explicitly disable autoplay
+                        ? false
                         : {
-                            delay: 3000,
+                            delay: 4000,
                             disableOnInteraction: false,
                         }
                 }
-                loop={true} // Loop can stay true; no need to toggle
+                loop={true}
                 modules={modules}
                 className="promotion-slider"
             >
                 {slides.map((item, index) => (
                     <SwiperSlide key={index}>
                         <Link href={item.link} className={'slide-item'}>
-                            {item.text}
+                            <Text size={"2"} weight="bold">{item.text}</Text>
                         </Link>
                     </SwiperSlide>
                 ))}
@@ -69,6 +69,6 @@ export default function HeaderPromotionSlides() {
                     <PauseIcon fontSize="medium" fontWeight="bold" onClick={togglePause}/>
                 )}
             </Box>
-        </Box>
+        </Flex>
     );
 }
