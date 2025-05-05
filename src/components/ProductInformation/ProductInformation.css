@@ -1,0 +1,25 @@
+.product-tag{
+    padding: 0.2rem;
+    background-color: #ededed;
+}
+
+.product-rate{
+    height: 100%;
+    padding: 0.2rem 0.8rem;
+    border-radius: 1em;
+    background-color: #ededed;
+    cursor: pointer;
+}
+
+.product-icon-box{
+    cursor: pointer;
+    padding: 0.2rem 1rem;
+    background-color: #ededed;
+    border-radius: 1rem
+}
+
+.product-icon{
+    height: 1.2rem;
+    width: 1.2rem
+}
+
