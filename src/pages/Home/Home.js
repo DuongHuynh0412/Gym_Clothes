@@ -1,10 +1,12 @@
 import MainBannerSection from "../../components/MainBannerSection/MainBannerSection";
 import MainSaleEventSlides from "../../components/MainSaleEventSlides/MainSaleEventSlides";
 import MainBestsellersSection from "../../components/MainBestSellerSection/MainBestSellerSection";
+import HeaderPromotionSlides from "../../components/HeaderPromotionSlides/HeaderPromotionSlides";
 
 function Home() {
     return (
         <>
+            <HeaderPromotionSlides/>
             <MainBannerSection/>
             <MainSaleEventSlides
                 folder={'mid-season-image'}

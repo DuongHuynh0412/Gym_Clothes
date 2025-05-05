@@ -12,7 +12,6 @@ function Header() {
     return (
         <header className="font-[sans-serif]">
             <HeaderNavbar/>
-            <HeaderPromotionSlides/>
         </header>
     );
 }

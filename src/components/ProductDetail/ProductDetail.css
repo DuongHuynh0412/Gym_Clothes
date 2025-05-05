@@ -1,0 +1,7 @@
+.product-image-present::-webkit-scrollbar {
+    display: none;
+}
+.product-image-present{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+}
