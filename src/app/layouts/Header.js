@@ -1,6 +1,9 @@
 import {useNavigate} from 'react-router-dom';
 import HeaderPromotionSlides from "../../components/HeaderPromotionSlides/HeaderPromotionSlides";
 import HeaderNavbar from "../../components/HeaderNavbar/HeaderNavbar";
+import {Box, Flex, Link, TextField} from "@radix-ui/themes";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import {HeartIcon, LockClosedIcon, MagnifyingGlassIcon, PersonIcon} from "@radix-ui/react-icons";
 
 function Header() {
     const navigate = useNavigate();
@@ -11,7 +14,31 @@ function Header() {
 
     return (
         <header className="font-[sans-serif]">
-            <HeaderNavbar/>
+            <Flex className="header_navbar" align="center" justify="between" px="6">
+                <Link className="flex items-center cursor-pointer logo" href="/">
+                    <img
+                        src="./gymshark-logo.svg"
+                        alt="Gymshark Logo"
+                    />
+                </Link>
+                <HeaderNavbar/>
+                <div className="flex gap-1 items-center">
+                    <Box>
+                        <TextField.Root placeholder="Search the docs…" size="1">
+                            <TextField.Slot>
+                                <MagnifyingGlassIcon height="16" width="16"/>
+                            </TextField.Slot>
+                        </TextField.Root>
+                    </Box>
+
+                    <div className="flex gap-6">
+                        <HeartIcon/>
+                        <PersonIcon className={'cursor-pointer'} onClick={()=>{navigate('/login')}}/>
+                        <LockClosedIcon/>
+                    </div>
+                </div>
+            </Flex>
+            <div style={{height: '3.5em', width: '100%'}}></div>
         </header>
     );
 }

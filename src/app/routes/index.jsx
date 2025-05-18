@@ -4,11 +4,13 @@ import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
 import SaleArea from "../../pages/SaleArea/SaleArea";
 import Product from "../../pages/Product/Product";
+import ResetPassword from "../../pages/ResetPassword/ResetPassword";
 
 const publicRoutes = [
   { path: '/', element: HomePage, layout: DefaultLayout },
   { path: '/login', element: Login },
-  { path: '/register', element: Register },
+  { path: '/reset-password', element: ResetPassword },
+  { path: '/signup', element: Register },
   { path: '/collections/:productType/:gender', element: SaleArea, layout: DefaultLayout },
   { path: '/products/:productCode', element: Product, layout: DefaultLayout },
 ];

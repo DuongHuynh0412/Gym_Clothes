@@ -16,34 +16,3 @@
     padding-left: 4rem;
     padding-right: 4rem;
 }
-
-.navigation-button-group {
-    padding: 10px 4rem;
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5em
-}
-
-.button-prev {
-    padding: 0.6em !important;
-    color: white;
-    border-radius: 2rem !important;
-    background-color: black !important;
-}
-
-
-.button-next {
-    padding: 0.6em !important;
-    border-radius: 2rem !important;
-    background-color: black !important;
-    color: white
-}
-
-.swiper-button-disabled{
-    background-color: rgba(0, 0, 0, 0.3) !important;
-    color: white !important;
-}
-
-.section-swipper-name{
-    padding: 10px 4rem;
-}
