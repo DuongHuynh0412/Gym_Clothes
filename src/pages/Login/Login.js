@@ -5,8 +5,8 @@ import { Form } from 'radix-ui';
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { useForm } from 'react-hook-form';
 import './Login.css';
-import {loginModel} from "../../services/authorize/Authorize.model";
-import {HandleLogin} from "../../services/authorize/Authorize.service";
+import {loginModel} from "../../services/authorize/Authorize.Model";
+import {HandleLogin} from "../../services/authorize/Authorize.Service";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);

@@ -5,7 +5,7 @@ import './ProductDetail.css'
 
 const ProductDetail = () => {
     return (
-        <Grid columns='5'>
+        <Grid columns='10'>
             <ProductImagePresent />
             <ProductInformation />
         </Grid>

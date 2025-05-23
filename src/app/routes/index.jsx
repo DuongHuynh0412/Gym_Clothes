@@ -11,8 +11,9 @@ const publicRoutes = [
   { path: '/login', element: Login },
   { path: '/reset-password', element: ResetPassword },
   { path: '/signup', element: Register },
-  { path: '/collections/:productType/:gender', element: SaleArea, layout: DefaultLayout },
-  { path: '/products/:productCode', element: Product, layout: DefaultLayout },
+  { path: '/collections/:collection/:gender', element: SaleArea, layout: DefaultLayout },
+  { path: '/collections/:productCollection', element: SaleArea, layout: DefaultLayout },
+  { path: '/products/:productColorCode', element: Product, layout: DefaultLayout },
 ];
 
 const privateRoutes = [];

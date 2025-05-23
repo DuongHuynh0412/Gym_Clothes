@@ -1,12 +1,19 @@
+// api/axios.ts
 import axios from "axios";
-import {getAccessToken} from "./commons/method.common";
 
-const axiosInstance = axios.create({
-    baseURL: process.env.BASE_URL,
+const apiClient = axios.create({
+    baseURL: process.env.REACT_APP_API_URL,
     timeout: 2000,
-    headers: {'X-Custom-Header': 'foobar'}
 });
-const accessToken = getAccessToken();
-axiosInstance.defaults.headers.common['Authorization'] = accessToken;
 
-export default axiosInstance;
+// Store token in memory at module level
+const authToken = localStorage.getItem('accessToken');
+
+apiClient.interceptors.request.use(
+    (config) => {
+        config.headers.Authorization = authToken ? `Bearer ${authToken}` : undefined;
+        return config;
+    }
+);
+
+export default apiClient;

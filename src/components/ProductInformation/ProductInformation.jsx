@@ -1,10 +1,75 @@
-import {Box, Flex, Grid, Text} from "@radix-ui/themes";
-import {StarFilledIcon, HeartIcon, UploadIcon} from "@radix-ui/react-icons";
+import {Box, Button, Flex, Grid, Text} from "@radix-ui/themes";
+import {HeartIcon, StarFilledIcon, UploadIcon} from "@radix-ui/react-icons";
 import './ProductInformation.css'
+import {useContext, useState} from "react";
+import {ProductContext} from "../../providers/ProductProvider";
+import {convertImageUrl, GetLocalStorage, SetLocalStorage, SetProductToLocalStorage} from "../../commons/method.common";
+import {useNavigate} from "react-router-dom";
 
 const ProductInformation = () => {
+    const [selectedSize, setSelectedSize] = useState(undefined);
+    const navigate = useNavigate();
+    const productContext = useContext(ProductContext)
+    const data = productContext.productData;
+    const productColors = data?.ProductData?.ProductColorList;
+    const productInventory = data?.ProductInventoryData;
+
+    const handleMouseUp = (targetValue, item) => {
+        if (!targetValue.className?.includes("focused-item") && !targetValue.className?.includes("selected-color")) {
+            targetValue.className += "focused-item"
+        }
+        const colorName = document.getElementById('focused-color');
+        colorName.textContent = item?.Product_Color_Name;
+    }
+    const handleMouseLeave = (targetValue) => {
+        if (targetValue.className?.includes("focused-item")) {
+            targetValue.className = targetValue.className.replace("focused-item", "")
+        }
+        const colorName = document.getElementById('focused-color');
+        colorName.textContent = data?.Product_Color_Name;
+    }
+
+    const handleAddProductToBag = () => {
+        let shoppingCart = GetLocalStorage('shopping-cart')
+        const selectedSizeObject = productInventory.find(item => item.Product_Size_Code === selectedSize);
+        if (!shoppingCart) {
+            SetLocalStorage({
+                key: 'shopping-cart',
+                data: [{productSize: selectedSizeObject, product: data, productAmount: 1}]
+            })
+        } else {
+            const productInShoppingCart = JSON.parse(shoppingCart);
+            const existedIndex = productInShoppingCart.findIndex(item => {
+                return item.product.Product_Color_Code === data.Product_Color_Code
+                    && item.productSize?.Product_Size_Code === selectedSize
+            });
+            if (existedIndex > -1) {
+                productInShoppingCart[existedIndex].productAmount += 1;
+                shoppingCart = productInShoppingCart;
+            } else {
+                shoppingCart = [
+                    ...productInShoppingCart,
+                    {
+                        productSize: selectedSizeObject,
+                        product: data,
+                        productAmount: 1
+                    }
+                ]
+            }
+            SetLocalStorage({
+                key: 'shopping-cart',
+                data: shoppingCart
+            })
+        }
+        setSelectedSize(undefined);
+    }
+
+    const handleOpenViewProduct = (productColorCode) =>{
+        navigate(`/products/${productColorCode}`);
+    }
+
     return (
-        <Grid gridColumnStart="4" gridColumnEnd="6" className={'flex flex-col items-center'}>
+        <Grid gridColumnStart="6" gridColumnEnd="11" className={'flex flex-col items-center product-info'}>
             <Flex direction="column" align='center' gapY="5">
                 <Flex direction="column" align='center' gap={'2'}>
                     <Text
@@ -15,7 +80,7 @@ const ProductInformation = () => {
                         NEW
                     </Text>
                     <Text size='4' weight="bold" className={'mt-2'}>
-                        EST 2012 GRAPHIC T-SHIRT
+                        {data?.ProductData?.Product_Name}
                     </Text>
                     <Text size='1' weight="light">
                         Oversized Fit
@@ -43,64 +108,82 @@ const ProductInformation = () => {
                         <UploadIcon className={'product-icon'}/>
                     </Box>
                 </Flex>
-                <Flex align='center' justify="between" gapX="5">
+                <Flex direction='column' align='center' gapY={'1'} className={'product-type-infomation'}>
+                    <Text as={'p'} weight={'bold'} size={'2'}>NEW VITAL SCULPT</Text>
+                    <Text as={'p'} size={'1'} align={'center'}>Soft, stretchy, made for movement. Just don’t hit any
+                        super deep squats in it JIC, as the fabric may become sheer when pushed to the limit.</Text>
+                </Flex>
+                <Flex direction={"column"} align={'center'} gapY={'1'}>
+                    <Flex direction={'row'} gapY={'1'} gapX={'2'} height={'6rem'}>
+                        {productColors?.map(item => {
+                            return (
+                                <img
+                                    onMouseMove={(e) => {
+                                        handleMouseUp(e.target, item)
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        handleMouseLeave(e.target)
+                                    }}
+                                    onClick={()=> handleOpenViewProduct(item.Product_Color_Code)}
+                                    key={item.Product_Color_Code}
+                                    className={`rounded-lg cursor-pointer h-full ${data?.Product_Color_Code === item.Product_Color_Code ? "selected-color" : ""}`}
+                                    src={convertImageUrl(item?.Product_Color_Images?.[0]?.url)}
+                                    alt={item?.Product_Color_Name}
+                                />
+                            )
+                        })}
+                    </Flex>
                     <Box>
-                        <img src="/EST2012GraphicT-ShirtGSBlackB3B1R-BB2J-1081_A-0147_3840x.webp" alt=""/>
-                    </Box>
-                    <Box>
-                        <img src="/EST2012GraphicT-ShirtGSLiftPinkB3B1R-KCPR-1036_A-0141_640x.webp" alt=""/>
-                    </Box>
-                    <Box>
-                        <img src="/EST2012GraphicT-ShirtGSWhiteB3B1R-WB57-0987_A-0135_edfccd9f-bdd9-4711-bc2a-ff097d323a3f_640x.webp" alt=""/>
+                        <Text
+                            size="1"
+                            weight="medium"
+                            id={"focused-color"}
+                            color={'gray'}
+                        >
+                            {data?.Product_Color_Name}
+                        </Text>
                     </Box>
                 </Flex>
+                <Flex
+                    direction='column'
+                    align='flex-start'
+                    gapY={'1'}
+                    className={'w-full'}
+                >
+                    <Text size="1" color={'gray'}>
+                        Select a size
+                    </Text>
+                    <Grid
+                        gapY={'1'}
+                        columns={'7'}
+                        className={'w-full px-2 py-3'}
+                        gapX={'2'}
+                        style={{
+                            border: '1px solid gray', borderRadius: '1rem'
+                        }}
+                    >
+                        {productInventory?.map((item, index) => {
+                            return (
+                                <Flex
+                                    key={index}
+                                    className={`size-item ${selectedSize === item.Product_Size_Code ? "activated" : ""}`}
+                                    align="center"
+                                    justify="center"
+                                    onClick={() => {
+                                        setSelectedSize(item.Product_Size_Code)
+                                    }}
+                                >
+                                    <Text size={'1'}>
+                                        {item?.ProductSizeData?.Product_Size_Name}
+                                    </Text>
+                                </Flex>)
+                        })}
+                    </Grid>
+                </Flex>
+                <Button className={'add-to-bag-button'} onClick={handleAddProductToBag}>
+                    ADD TO BAG
+                </Button>
             </Flex>
-
-            {/*<div class="section">*/}
-            {/*    <div>★★★★★ <a href="#">(2)</a></div>*/}
-            {/*    <div>♡ ⤴</div>*/}
-            {/*</div>*/}
-
-            {/*<div class="section thumbnails">*/}
-            {/*    <img src="black-shirt.png" alt="Black" class="active"/>*/}
-            {/*    <img src="pink-shirt.png" alt="Pink"/>*/}
-            {/*    <img src="white-shirt.png" alt="White"/>*/}
-            {/*    <div>Black</div>*/}
-            {/*</div>*/}
-
-            {/*<div class="section">*/}
-            {/*    <div>*/}
-            {/*        <span class="label">Select a size</span> — <a href="#">Size Guide</a>*/}
-            {/*    </div>*/}
-            {/*    <div class="size-options">*/}
-            {/*        <span>XXS</span>*/}
-            {/*        <span>XS</span>*/}
-            {/*        <span>S</span>*/}
-            {/*        <span>M</span>*/}
-            {/*        <span>L</span>*/}
-            {/*        <span>XL</span>*/}
-            {/*        <span>XXL</span>*/}
-            {/*    </div>*/}
-            {/*    <button class="button">ADD TO BAG</button>*/}
-            {/*</div>*/}
-
-            {/*<div class="section checkout-options">*/}
-            {/*    <div>Pay in 4 interest-free payments of $9.50. <a href="#">Learn more</a></div>*/}
-            {/*    <div>Also available at checkout: Klarna, Afterpay</div>*/}
-            {/*</div>*/}
-
-            {/*<div class="section">*/}
-            {/*    <div><strong>Unlock Access to Exclusive Rewards & Benefits</strong></div>*/}
-            {/*    <div>Purchasing this product earns 304XP</div>*/}
-            {/*</div>*/}
-
-            {/*<div class="section get-the-look">*/}
-            {/*    <div><strong>GET THE LOOK</strong> — 3 Products</div>*/}
-            {/*    <img src="look1.png" alt="Look 1"/>*/}
-            {/*    <img src="look2.png" alt="Look 2"/>*/}
-            {/*    <img src="look3.png" alt="Look 3"/>*/}
-            {/*</div>*/}
-        </Grid>
-    )
+        </Grid>)
 }
 export default ProductInformation;

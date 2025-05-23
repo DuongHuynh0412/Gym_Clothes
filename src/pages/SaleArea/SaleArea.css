@@ -1,0 +1,15 @@
+.collection-image {
+    height: 85% !important;
+    overflow: hidden;
+}
+
+.collection-image img {
+    object-fit: unset;
+}
+.collection-image img {
+    transition: transform 0.5s ease;
+}
+
+.collection-image:hover img {
+    transform: scale(105%);
+}

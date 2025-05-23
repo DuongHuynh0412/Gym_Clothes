@@ -1,9 +1,20 @@
-.product-tag{
+.product-tag {
     padding: 0.2rem;
     background-color: #ededed;
 }
 
-.product-rate{
+.product-info {
+    padding-block: 4rem;
+    padding-inline: 12rem;
+}
+
+.product-type-infomation {
+    background-color: #d5d5d5;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.product-rate {
     height: 100%;
     padding: 0.2rem 0.8rem;
     border-radius: 1em;
@@ -11,15 +22,52 @@
     cursor: pointer;
 }
 
-.product-icon-box{
+.product-icon-box {
     cursor: pointer;
     padding: 0.2rem 1rem;
     background-color: #ededed;
     border-radius: 1rem
 }
 
-.product-icon{
+.product-icon {
     height: 1.2rem;
     width: 1.2rem
 }
 
+.selected-color {
+    border: 1px solid black;
+}
+
+.focused-item {
+    border: 1px solid #a6a6a6;
+}
+
+.size-item {
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.size-item.activated{
+    background-color: black !important;
+    color: white
+}
+
+.size-item:hover {
+    background-color: black;
+    color: white
+}
+
+.size-item .disabled{
+    cursor: none;
+}
+.add-to-bag-button{
+    width: 100% !important;
+    padding: 1.5rem !important;
+    border-radius: 1rem !important;
+    background-color: black !important;
+    cursor: pointer !important;
+}
+
+.add-to-bag-button:hover{
+    background-color: rgba(0, 0, 0, 0.9) !important;
+}

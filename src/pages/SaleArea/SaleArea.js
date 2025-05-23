@@ -5,9 +5,9 @@ import ProductInstructSection from "../../components/ProductInstructSection/Prod
 import MainProductTypeSlides from "../../components/MainProductTypeSlides/MainProductTypeSlides";
 import ProductPresentation from "../../components/ProductPresentation/ProductPresentation";
 import HeaderPromotionSlides from "../../components/HeaderPromotionSlides/HeaderPromotionSlides";
+import './SaleArea.css'
 
 function SaleArea() {
-    const params = useParams();
     return (
         <>
             <HeaderPromotionSlides/>

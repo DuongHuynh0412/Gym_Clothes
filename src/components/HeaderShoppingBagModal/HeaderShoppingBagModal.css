@@ -1,0 +1,138 @@
+/* CartPortal.css */
+.DialogOverlay {
+    background-color: var(--black-a10);
+    position: fixed;
+    inset: 0;
+}
+
+.TriggerButton{
+    cursor: pointer;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.DialogContent {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 25%;
+    background: white;
+    /*padding: 1.5rem;*/
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    opacity: 0;
+    animation: slideInFromRight 400ms ease-in-out forwards;
+}
+
+/* Slide out animation when closing */
+.DialogContent[data-state="closed"] {
+    animation: slideOutToRight 200ms ease-in-out forwards;
+}
+
+.CloseButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: gray;
+    cursor: pointer;
+}
+
+.CheckoutButton {
+    margin-top: 1rem;
+    background: black;
+    color: white;
+    padding: 0.5rem;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+.bag-item{
+    column-gap: 0.5rem;
+}
+
+.bag-item-info{
+}
+
+.heart-icon{
+    padding: 8px;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    background-color: #f1f1f1;
+}
+
+.heart-icon:hover{
+    background-color: #e3e3e3;
+}
+
+.trash-icon{
+    padding: 8px;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    background-color: #f1f1f1;
+}
+
+.trash-icon:hover{
+    background-color: #e3e3e3;
+}
+
+
+.love-and-trash{
+    column-gap: 0.5rem;
+}
+
+.product-number-label{
+    font-size: 0.8rem;
+}
+.product-number{
+    font-size: 0.8rem;
+    padding-block: 0;
+    padding-left: 5px;
+    padding-right: 1.5rem !important;
+}
+
+.purchase-button-div{
+    padding-inline: 1rem;
+    padding-block: 1.5rem;
+    background-color: white;
+}
+
+.purchase-button{
+    cursor: pointer !important;
+    width: 100% !important;
+    padding: 0.5rem !important;
+    border-radius: 2rem !important;
+    background-color: black !important;
+}
+.purchase-button:hover{
+    background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.purchase-button span{
+    font-size: 1rem;
+}

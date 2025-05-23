@@ -1,6 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import HeaderPromotionSlides from "../../components/HeaderPromotionSlides/HeaderPromotionSlides";
 import HeaderNavbar from "../../components/HeaderNavbar/HeaderNavbar";
+import HeaderShoppingBagModal from '../../components/HeaderShoppingBagModal/HeaderShoppingBagModal'
 import {Box, Flex, Link, TextField} from "@radix-ui/themes";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import {HeartIcon, LockClosedIcon, MagnifyingGlassIcon, PersonIcon} from "@radix-ui/react-icons";
@@ -23,18 +24,15 @@ function Header() {
                 </Link>
                 <HeaderNavbar/>
                 <div className="flex gap-1 items-center">
-                    <Box>
-                        <TextField.Root placeholder="Search the docs…" size="1">
-                            <TextField.Slot>
-                                <MagnifyingGlassIcon height="16" width="16"/>
-                            </TextField.Slot>
-                        </TextField.Root>
-                    </Box>
-
                     <div className="flex gap-6">
                         <HeartIcon/>
-                        <PersonIcon className={'cursor-pointer'} onClick={()=>{navigate('/login')}}/>
-                        <LockClosedIcon/>
+                        <PersonIcon
+                            className={'cursor-pointer'}
+                            onClick={() => {
+                                navigate('/login')
+                            }}
+                        />
+                        <HeaderShoppingBagModal/>
                     </div>
                 </div>
             </Flex>
