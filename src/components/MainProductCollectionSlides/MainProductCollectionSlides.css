@@ -4,12 +4,17 @@
 }
 
 .product-type-swipper-section{
-    height: 70%;
+    height: 23em;
+}
+
+.product-type-swipper-slide img{
+    height: 18rem;
+    width: 100%
 }
 
 .product-type-section {
     margin-top: 4rem;
-    height:500px;
+    margin-bottom: 4rem;
 }
 
 .product-type-swipper {

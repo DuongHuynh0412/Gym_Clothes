@@ -1,0 +1,15 @@
+.apply-promotion-button{
+    background-color: black !important; /* Green for Apply Promotion */
+    color: white !important;
+    font-weight: bold !important;
+    padding: var(--space-2);
+    cursor: pointer !important;
+}
+
+.apply-promotion-button:hover{
+    background-color: rgba(0, 0, 0, 0.8) !important; /* Green for Apply Promotion */
+}
+
+.order-payment-summary{
+    width: 60% !important;
+}

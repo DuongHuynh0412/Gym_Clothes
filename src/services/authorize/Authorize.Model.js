@@ -1,4 +1,4 @@
 export const loginModel = {
-    password: "",
-    email: ""
+    System_User_Password: "",
+    System_User_Email: ""
 }

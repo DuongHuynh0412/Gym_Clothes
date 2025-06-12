@@ -3,8 +3,16 @@ import {HeartIcon, StarFilledIcon, UploadIcon} from "@radix-ui/react-icons";
 import './ProductInformation.css'
 import {useContext, useState} from "react";
 import {ProductContext} from "../../providers/ProductProvider";
-import {convertImageUrl, GetLocalStorage, SetLocalStorage, SetProductToLocalStorage} from "../../commons/method.common";
+import {
+    convertImageUrl,
+    GetLocalStorage,
+    SetLocalStorage,
+    SetProductToLocalStorage,
+    UpdateShoppingCartLocal
+} from "../../commons/method.common";
 import {useNavigate} from "react-router-dom";
+import LoveItem from "../commons/LoveItem/LoveItem";
+import {AddShoppingBag, UpdateShoppingBag} from "../../services/user/User.Service";
 
 const ProductInformation = () => {
     const [selectedSize, setSelectedSize] = useState(undefined);
@@ -30,42 +38,43 @@ const ProductInformation = () => {
     }
 
     const handleAddProductToBag = () => {
-        let shoppingCart = GetLocalStorage('shopping-cart')
         const selectedSizeObject = productInventory.find(item => item.Product_Size_Code === selectedSize);
-        if (!shoppingCart) {
-            SetLocalStorage({
-                key: 'shopping-cart',
-                data: [{productSize: selectedSizeObject, product: data, productAmount: 1}]
-            })
-        } else {
-            const productInShoppingCart = JSON.parse(shoppingCart);
-            const existedIndex = productInShoppingCart.findIndex(item => {
-                return item.product.Product_Color_Code === data.Product_Color_Code
-                    && item.productSize?.Product_Size_Code === selectedSize
-            });
-            if (existedIndex > -1) {
-                productInShoppingCart[existedIndex].productAmount += 1;
-                shoppingCart = productInShoppingCart;
-            } else {
-                shoppingCart = [
-                    ...productInShoppingCart,
-                    {
-                        productSize: selectedSizeObject,
-                        product: data,
-                        productAmount: 1
-                    }
-                ]
-            }
-            SetLocalStorage({
-                key: 'shopping-cart',
-                data: shoppingCart
-            })
+        if (!selectedSizeObject) {
+            const sizeSelectArea = document.getElementById('product-size-select-area');
+            sizeSelectArea.style.border = '1px solid red';
+            return;
         }
-        setSelectedSize(undefined);
+        AddShoppingBag({
+            Product_Color_Code: data?.Product_Color_Code,
+            Product_Size_Code: selectedSize
+        }).then(result => {
+            if (result === null) {
+                throw new Error('updateFail')
+            }
+            setSelectedSize(undefined);
+        }).catch((e) => {
+            return;
+        })
     }
 
-    const handleOpenViewProduct = (productColorCode) =>{
+    const handleOpenViewProduct = (productColorCode) => {
         navigate(`/products/${productColorCode}`);
+    }
+
+    const handleSelectedSize = () => {
+        const sizeSelectArea = document.getElementById('product-size-select-area');
+        sizeSelectArea.style.border = '1px solid gray';
+    }
+
+    const handleCopyUrl = () => {
+        const productUrl = window.location.href;
+        navigator.clipboard.writeText(productUrl)
+            .then(() => {
+                console.log('copy to backend')
+            })
+            .catch(err => {
+                console.error("Failed to copy: ", err);
+            });
     }
 
     return (
@@ -101,11 +110,11 @@ const ProductInformation = () => {
                             (2)
                         </Text>
                     </Flex>
-                    <Box className={'product-icon-box'}>
-                        <HeartIcon className={'product-icon'}/>
-                    </Box>
-                    <Box className={'product-icon-box'}>
-                        <UploadIcon className={'product-icon'}/>
+                    <Box>
+                        <LoveItem
+                            colorCode={data?.Product_Color_Code}
+                            className={'product-icon-box'}
+                        />
                     </Box>
                 </Flex>
                 <Flex direction='column' align='center' gapY={'1'} className={'product-type-infomation'}>
@@ -124,7 +133,7 @@ const ProductInformation = () => {
                                     onMouseLeave={(e) => {
                                         handleMouseLeave(e.target)
                                     }}
-                                    onClick={()=> handleOpenViewProduct(item.Product_Color_Code)}
+                                    onClick={() => handleOpenViewProduct(item.Product_Color_Code)}
                                     key={item.Product_Color_Code}
                                     className={`rounded-lg cursor-pointer h-full ${data?.Product_Color_Code === item.Product_Color_Code ? "selected-color" : ""}`}
                                     src={convertImageUrl(item?.Product_Color_Images?.[0]?.url)}
@@ -157,6 +166,7 @@ const ProductInformation = () => {
                         gapY={'1'}
                         columns={'7'}
                         className={'w-full px-2 py-3'}
+                        id={'product-size-select-area'}
                         gapX={'2'}
                         style={{
                             border: '1px solid gray', borderRadius: '1rem'
@@ -171,6 +181,7 @@ const ProductInformation = () => {
                                     justify="center"
                                     onClick={() => {
                                         setSelectedSize(item.Product_Size_Code)
+                                        handleSelectedSize();
                                     }}
                                 >
                                     <Text size={'1'}>

@@ -7,8 +7,10 @@ import { useForm } from 'react-hook-form';
 import './Login.css';
 import {loginModel} from "../../services/authorize/Authorize.Model";
 import {HandleLogin} from "../../services/authorize/Authorize.Service";
+import {Navigate, useNavigate} from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {...loginModel}
@@ -18,10 +20,11 @@ const Login = () => {
         setShowPassword(!showPassword);
     };
 
-    const onSubmit = (data) => {
-        console.log('Form Values:', data);
-        HandleLogin(data);
-        // You can now use data for API calls or further processing
+    const onSubmit = async (data) => {
+        const success = await HandleLogin(data);
+        if (success) {
+            navigate(-1, );
+        }
     };
 
     return (
@@ -42,7 +45,7 @@ const Login = () => {
 
                     <Form.Root className="login-form" onSubmit={handleSubmit(onSubmit)}>
                         <Flex className="form-fields" gapY="3">
-                            <Form.Field name="email">
+                            <Form.Field name="System_User_Email">
                                 <Box className="form-field">
                                     <Form.Label asChild>
                                         <Text as="label" className="form-label">
@@ -51,22 +54,22 @@ const Login = () => {
                                     </Form.Label>
                                     <Form.Control asChild>
                                         <input
-                                            type="email"
-                                            {...register("email", {
+                                            type="System_User_Email"
+                                            {...register("System_User_Email", {
                                                 required: true,
                                                 pattern: /^[^@]+@[^@]+\.[^@]{2,}$/i,
                                             })}
                                             className="form-input"
                                         />
                                     </Form.Control>
-                                    {errors.email?.type === "required" && (
+                                    {errors.System_User_Email?.type === "required" && (
                                         <Form.Message asChild>
                                             <Text as="p" className="form-error">
                                                 Please enter your email
                                             </Text>
                                         </Form.Message>
                                     )}
-                                    {errors.email?.type === "pattern" && (
+                                    {errors.System_User_Email?.type === "pattern" && (
                                         <Form.Message asChild>
                                             <Text as="p" className="form-error">
                                                 Please enter a valid email
@@ -76,7 +79,7 @@ const Login = () => {
                                 </Box>
                             </Form.Field>
 
-                            <Form.Field name="password">
+                            <Form.Field name="System_User_Password">
                                 <Box className="form-field">
                                     <Form.Label asChild>
                                         <Text as="label" className="form-label">
@@ -87,7 +90,7 @@ const Login = () => {
                                         <Form.Control asChild>
                                             <input
                                                 type={showPassword ? "text" : "password"}
-                                                {...register("password", { required: true })}
+                                                {...register("System_User_Password", { required: true })}
                                                 className="form-input"
                                             />
                                         </Form.Control>
@@ -103,7 +106,7 @@ const Login = () => {
                                             )}
                                         </button>
                                     </Box>
-                                    {errors.password && (
+                                    {errors.System_User_Password && (
                                         <Form.Message asChild>
                                             <Text as="p" className="form-error">
                                                 Please enter your password
@@ -114,7 +117,7 @@ const Login = () => {
                             </Form.Field>
 
                             <Box className="forgot-password">
-                                <Link href="/reset-password" className="forgot-link">
+                                <Link href="/resetPassword" className="forgot-link">
                                     <Text size="2">
                                         Forgot password?
                                     </Text>
@@ -130,7 +133,7 @@ const Login = () => {
                             <Box className="signup-link">
                                 <Text as="span" className="signup-text">
                                     Don't have an account?{' '}
-                                    <Link href="/signup" className="signup-action">
+                                    <Link href="/signUp" className="signup-action">
                                         Sign up
                                     </Link>
                                 </Text>

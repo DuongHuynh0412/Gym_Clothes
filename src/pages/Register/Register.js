@@ -31,19 +31,7 @@ const Register = () => {
       <Container size="1" className="login-container">
         <Flex direction="column" align="center" gapY="4">
           <Box className="logo">
-            <svg
-                width="70"
-                height="40"
-                viewBox="0 0 70 40"
-                className="logo-svg"
-            >
-              <path
-                  d="M35 5L60 35H10L35 5Z"
-                  fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="2"
-              />
-            </svg>
+            <img src="/gs-icon-black.png" alt="black icon"/>
           </Box>
 
           <Flex direction="column" align="center" gapY="2">

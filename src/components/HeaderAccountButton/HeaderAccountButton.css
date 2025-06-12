@@ -1,0 +1,117 @@
+.account-button-trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.account-arrow {
+    font-size: 16px;
+    transition: transform 0.2s ease;
+}
+
+.account-button-trigger[aria-expanded="true"] .account-arrow {
+    transform: rotate(180deg);
+}
+
+.account-icon-unauthenticated {
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.account-dropdown-item button{
+    width: 100% !important;
+}
+
+.account-dropdown-content {
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 8px;
+    min-width: 200px;
+    z-index: 1000;
+    animation: dropdown-open 0.2s ease-out forwards;
+    transform-origin: top center;
+}
+
+@keyframes dropdown-open {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.account-dropdown-content[aria-hidden="true"] {
+    animation: dropdown-close 0.2s ease-out forwards;
+}
+
+@keyframes dropdown-close {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.account-dropdown-scroll {
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+.account-dropdown-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.account-dropdown-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+}
+
+.account-dropdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.account-dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.account-dropdown-item-danger {
+    color: red;
+}
+
+.account-dropdown-item-danger:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.shortcut {
+    color: #888;
+    font-size: 12px;
+}
+
+.account-dropdown-separator {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 4px 0;
+}
+
+.account-dropdown-arrow {
+    fill: white;
+}

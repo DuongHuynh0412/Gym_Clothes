@@ -16,21 +16,20 @@ const MainBestsellersSection = () => {
                     Upgrade your wardrobe with fresh lift and rest day styles in seasonal shades.
                 </p>
 
-                {/* Buttons */}
-                <div className="mt-6 flex space-x-4">
-                    <a
-                        href="#"
-                        className="bg-white text-black px-6 py-3 rounded-full font-semibold uppercase hover:bg-gray-200"
-                    >
-                        Shop Women
-                    </a>
-                    <a
-                        href="#"
-                        className="bg-gray-600 text-white px-6 py-3 rounded-full font-semibold uppercase hover:bg-gray-700"
-                    >
-                        Shop Men
-                    </a>
-                </div>
+                {/*<div className="mt-6 flex space-x-4">*/}
+                {/*    <a*/}
+                {/*        href="#"*/}
+                {/*        className="bg-white text-black px-6 py-3 rounded-full font-semibold uppercase hover:bg-gray-200"*/}
+                {/*    >*/}
+                {/*        Shop Women*/}
+                {/*    </a>*/}
+                {/*    <a*/}
+                {/*        href="#"*/}
+                {/*        className="bg-gray-600 text-white px-6 py-3 rounded-full font-semibold uppercase hover:bg-gray-700"*/}
+                {/*    >*/}
+                {/*        Shop Men*/}
+                {/*    </a>*/}
+                {/*</div>*/}
             </div>
         </section>
     );

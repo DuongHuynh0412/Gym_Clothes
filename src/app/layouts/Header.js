@@ -5,6 +5,8 @@ import HeaderShoppingBagModal from '../../components/HeaderShoppingBagModal/Head
 import {Box, Flex, Link, TextField} from "@radix-ui/themes";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import {HeartIcon, LockClosedIcon, MagnifyingGlassIcon, PersonIcon} from "@radix-ui/react-icons";
+import HeaderLoveModal from "../../components/HeaderLoveModal/HeaderLoveModal";
+import HeaderAccountButton from "../../components/HeaderAccountButton/HeaderAccountButton";
 
 function Header() {
     const navigate = useNavigate();
@@ -18,21 +20,16 @@ function Header() {
             <Flex className="header_navbar" align="center" justify="between" px="6">
                 <Link className="flex items-center cursor-pointer logo" href="/">
                     <img
-                        src="./gymshark-logo.svg"
+                        src="http://localhost:3000/gymshark-logo.svg"
                         alt="Gymshark Logo"
                     />
                 </Link>
                 <HeaderNavbar/>
                 <div className="flex gap-1 items-center">
-                    <div className="flex gap-6">
-                        <HeartIcon/>
-                        <PersonIcon
-                            className={'cursor-pointer'}
-                            onClick={() => {
-                                navigate('/login')
-                            }}
-                        />
+                    <div className="flex gap-6 items-center">
+                        <HeaderLoveModal/>
                         <HeaderShoppingBagModal/>
+                        <HeaderAccountButton/>
                     </div>
                 </div>
             </Flex>

@@ -1,0 +1,12 @@
+.product-sort-options {
+    padding: 8px 0;
+}
+
+.product-sort-options label {
+    cursor: pointer;
+    user-select: none;
+}
+
+.product-sort-options [data-state='checked'] {
+    background-color: var(--accent-9);
+}

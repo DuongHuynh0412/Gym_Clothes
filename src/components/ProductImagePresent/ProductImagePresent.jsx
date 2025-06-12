@@ -24,7 +24,7 @@ const ImageOrVideoItem = ({ url, altText = "Product media" }) => {
             <img
                 src={convertedUrl}
                 alt={altText}
-                loading={'eager'}
+                loading={'lazy'}
                 className="collection-image-img" // Class for hover animation
             />
         );

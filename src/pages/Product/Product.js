@@ -3,6 +3,8 @@ import {useParams} from "react-router-dom";
 import {ProductProvider} from "../../providers/ProductProvider";
 import {useEffect, useState} from "react";
 import {GetProductsInfo} from "../../services/product/Product.Service";
+import ProductReviewSection
+    from "../../components/ProductPresentation/controls/ProductReviewSection/ProductReviewSection";
 
 const Product = () => {
     const [productData, setProductData] = useState({})
@@ -18,6 +20,7 @@ const Product = () => {
             productData : productData
         }}>
             <ProductDetail/>
+            <ProductReviewSection/>
         </ProductProvider>
     )
 }

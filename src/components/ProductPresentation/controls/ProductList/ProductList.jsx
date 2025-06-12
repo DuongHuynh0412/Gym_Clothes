@@ -20,7 +20,7 @@ const ProductList = ({collectionData}) => {
                             backImageUrl={productColor?.Product_Color_Images?.[1]?.url}
                             name={product?.Product_Name}
                             rating={product?.Product_Rating}
-                            color={productColor?.Product_Color_Name}
+                            productColorName={productColor?.Product_Color_Name}
                             price={product?.Product_Price}
                             sizes={productInventory}
                         />

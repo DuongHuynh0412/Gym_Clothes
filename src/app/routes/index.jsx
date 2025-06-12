@@ -5,6 +5,7 @@ import Register from "../../pages/Register/Register";
 import SaleArea from "../../pages/SaleArea/SaleArea";
 import Product from "../../pages/Product/Product";
 import ResetPassword from "../../pages/ResetPassword/ResetPassword";
+import PaymentPage from "../../pages/Payment/Payment";
 
 const publicRoutes = [
   { path: '/', element: HomePage, layout: DefaultLayout },
@@ -14,6 +15,7 @@ const publicRoutes = [
   { path: '/collections/:collection/:gender', element: SaleArea, layout: DefaultLayout },
   { path: '/collections/:productCollection', element: SaleArea, layout: DefaultLayout },
   { path: '/products/:productColorCode', element: Product, layout: DefaultLayout },
+  { path: '/checkouts', element: PaymentPage, layout: DefaultLayout, isPrivate: true },
 ];
 
 const privateRoutes = [];

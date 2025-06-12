@@ -1,6 +1,6 @@
 import {Autoplay, Navigation, Pagination} from "swiper/modules";
 import {Box, Button, Link} from "@radix-ui/themes";
-import {ChevronRightIcon,ChevronLeftIcon} from "@radix-ui/react-icons";
+import {ChevronRightIcon, ChevronLeftIcon} from "@radix-ui/react-icons";
 
 
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -9,53 +9,11 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";
 
 import "./MainSaleEventSlides.css"
+import {convertImageUrl} from "../../commons/method.common";
+import {useNavigate} from "react-router-dom";
 
-export default function MainSaleEventSlides({id, SectionTitle, folder}) {
-
-    const promos = [
-        {
-            image: 'https://via.placeholder.com/300x400', // Replace with your image
-            label: 'Mid-Season Sale',
-            offer: 'Extra 20% Off Pants & Pullovers with Code SWEATS20',
-            buttonText: 'Shop Now',
-        },
-        {
-            image: 'https://via.placeholder.com/300x400',
-            label: 'Mid-Season Sale',
-            offer: 'Leggings from $25',
-            buttonText: 'Shop Now',
-        },
-        {
-            image: 'https://via.placeholder.com/300x400',
-            label: 'Mid-Season Sale',
-            offer: 'Shorts from $10',
-            buttonText: 'Shop Now',
-        },
-        {
-            image: 'https://via.placeholder.com/300x400',
-            label: 'Mid-Season Sale',
-            offer: 'Sports Bras from $14',
-            buttonText: 'Shop Now',
-        },
-        {
-            image: 'https://via.placeholder.com/300x400',
-            label: 'Mid-Season Sale',
-            offer: 'Sports Bras from $14',
-            buttonText: 'Shop Now',
-        },
-        {
-            image: 'https://via.placeholder.com/300x400',
-            label: 'Mid-Season Sale',
-            offer: 'Sports Bras from $14',
-            buttonText: 'Shop Now',
-        },
-        {
-            image: 'https://via.placeholder.com/300x400',
-            label: 'Mid-Season Sale',
-            offer: 'Sports Bras from $14',
-            buttonText: 'Shop Now',
-        }
-    ];
+export default function MainSaleEventSlides({id, articleData, SectionTitle}) {
+    const navigate = useNavigate();
 
     const navigationOptions = {
         prevEl: `.swiper-custom-button-prev-${id}`,
@@ -86,23 +44,30 @@ export default function MainSaleEventSlides({id, SectionTitle, folder}) {
                     navigation={navigationOptions}
                 >
                     {
-                        promos.map((item, index) => {
-                            return (
-                                <SwiperSlide
-                                    key={index}
-                                    className={'rounded-b-lg'}
-                                >
-                                    <div className={'absolute rounded-b-lg'}>
-                                        <img
-                                            className={'rounded-b-lg'}
-                                            src={`/${folder}/${folder}-${index + 1}.avif`}
-                                            alt=""
-                                        />
-                                    </div>
-                                    hello
-                                </SwiperSlide>
+                        articleData ?
+                            (
+                                articleData?.map((item, index) => {
+                                    return (
+                                        <SwiperSlide
+                                            key={index}
+                                            className={'rounded-b-lg cursor-pointer'}
+                                        >
+                                            <div className={'absolute rounded-b-lg'}>
+                                                <img
+                                                    onClick={() => {
+                                                        navigate(`/products/${item.Product_Color_Code}`)
+                                                    }}
+                                                    className={'rounded-lg'}
+                                                    src={convertImageUrl(item.ImageUrl)}
+                                                    alt=""
+                                                />
+                                            </div>
+                                        </SwiperSlide>
+                                    )
+                                })
                             )
-                        })
+                            :
+                            ""
                     }
                 </Swiper>
             </section>

@@ -1,0 +1,6 @@
+.grid-col-span-2{
+    grid-column: span 1;
+}
+.grid-col-span-8{
+    grid-column: span 7;
+}

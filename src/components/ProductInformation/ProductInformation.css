@@ -22,11 +22,18 @@
     cursor: pointer;
 }
 
+.product-rate:hover {
+    background-color: rgba(168, 168, 168, 0.6)
+}
+
 .product-icon-box {
     cursor: pointer;
-    padding: 0.2rem 1rem;
-    background-color: #ededed;
+    padding: 0.2rem 1rem !important;
+    background-color: #ededed !important;
     border-radius: 1rem
+}
+.product-icon-box:hover{
+    background-color: rgba(168, 168, 168, 0.6) !important;
 }
 
 .product-icon {

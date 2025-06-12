@@ -2,15 +2,37 @@ import {useState} from "react";
 import {Box, Card, Flex, Grid, Text} from "@radix-ui/themes";
 import {HeartIcon} from "@radix-ui/react-icons";
 import "./ProductItem.css";
-import {convertImageUrl} from "../../../../commons/method.common";
+import {convertImageUrl, GetLocalStorage, SetLocalStorage} from "../../../../commons/method.common";
 import {useNavigate} from "react-router-dom";
+import {faHeart as heartSolid} from "@fortawesome/free-solid-svg-icons";
+import {faHeart as heartRegular} from "@fortawesome/free-regular-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import LoveItem from "../../../commons/LoveItem/LoveItem";
 
-const ProductItem = ({index, frontImageUrl, productColorCode, backImageUrl, name, rating, color, price, sizes}) => {
+const ProductItem = ({
+                         index,
+                         frontImageUrl,
+                         productColorCode,
+                         backImageUrl,
+                         name,
+                         rating,
+                         productColorName,
+                         price,
+                         sizes
+                     }) => {
     const navigate = useNavigate();
     const [imageUrl, setImageUrl] = useState(frontImageUrl);
     const viewSpecificItem = () => {
         navigate(`/products/${productColorCode}`)
     }
+
+    const handleAddProductToBag = (e, sizeObject) => {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    const favoriteList = GetLocalStorage('favorite-list')
+    const selectedFavoriteList = JSON.parse(favoriteList);
 
     return (
         <Box
@@ -20,8 +42,11 @@ const ProductItem = ({index, frontImageUrl, productColorCode, backImageUrl, name
             onMouseLeave={() => setImageUrl(frontImageUrl)}
             onClick={viewSpecificItem}
         >
-            <Box style={{position: "absolute", top: "8px", right: "8px"}}>
-                <HeartIcon width="20" height="20"/>
+            <Box style={{position: "absolute", top: "8px", right: "8px", zIndex: '50'}}>
+                <LoveItem
+                    colorCode={productColorCode}
+                    className={'love-item'}
+                />
             </Box>
 
             <Box
@@ -36,7 +61,9 @@ const ProductItem = ({index, frontImageUrl, productColorCode, backImageUrl, name
                 <Grid columns={'5'} className={'product-size'}>
                     {
                         sizes.map(item => (
-                            <Text as={'p'} size={'1'} weight={'medium'}>
+                            <Text as={'p'} size={'1'} weight={'medium'} onClick={(e) => {
+                                handleAddProductToBag(e, item.ProductSizeItem)
+                            }}>
                                 {item.ProductSizeItem?.Product_Size_Name}
                             </Text>
                         ))
@@ -52,7 +79,7 @@ const ProductItem = ({index, frontImageUrl, productColorCode, backImageUrl, name
                 </Flex>
                 <Flex direction="column" gap="1">
                     <Text size="2" weight="medium">{name}</Text>
-                    <Text size="2" weight="medium" color="gray">{color}</Text>
+                    <Text size="2" weight="medium" color="gray">{productColorName}</Text>
                     <Text size="2" weight="bold">${price}</Text>
                 </Flex>
             </Box>

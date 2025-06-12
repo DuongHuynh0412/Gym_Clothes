@@ -11,3 +11,35 @@
     border: 1px solid #4e4e4e !important;
     color: #4e4e4e !important;
 }
+/* src/components/ProductSizeOptions/ProductSizeOptions.css */
+.product-size-options {
+    padding: 8px 0;
+}
+
+.product-size-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid var(--gray-6);
+    border-radius: var(--radius-2);
+    background: var(--gray-1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.product-size-option:hover {
+    background: var(--gray-3);
+    border-color: var(--gray-8);
+}
+
+.product-size-option.selected {
+    background: var(--accent-9); /* Theme accent color for selected state */
+    border-color: var(--accent-10);
+    color: var(--gray-12);
+}
+
+.product-size-option:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-7);
+}

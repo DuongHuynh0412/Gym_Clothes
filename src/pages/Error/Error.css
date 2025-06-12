@@ -1,0 +1,10 @@
+.error-page {
+    width: 100%;
+    height: 100%;
+    background-image: url("/Users/huynhduong/Gym_Project/public/error-image.avif");
+    background-size: cover;
+}
+
+.error-page-container{
+    height: 100vh
+}

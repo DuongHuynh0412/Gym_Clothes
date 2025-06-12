@@ -2,24 +2,35 @@ import MainBannerSection from "../../components/MainBannerSection/MainBannerSect
 import MainSaleEventSlides from "../../components/MainSaleEventSlides/MainSaleEventSlides";
 import MainBestsellersSection from "../../components/MainBestSellerSection/MainBestSellerSection";
 import HeaderPromotionSlides from "../../components/HeaderPromotionSlides/HeaderPromotionSlides";
+import './Home.css'
+import {useEffect, useState} from "react";
+import {handleSearchArticle} from "../../services/article/Article.Service";
 
 function Home() {
+    const [SaleArticle, setSaleArticle] = useState([]);
+
+    const fetchDataArticle = () => {
+        handleSearchArticle().then((result) =>{
+            setSaleArticle(result.result.data);
+        })
+    }
+
+    useEffect(()=>{
+        fetchDataArticle()
+    },[])
+
     return (
         <>
-            <HeaderPromotionSlides/>
+            {/*<HeaderPromotionSlides/>*/}
             <MainBannerSection/>
-            <MainSaleEventSlides
-                folder={'mid-season-image'}
-                id={'main-sale-event-slides'}
-            />
             <div>
                 <MainSaleEventSlides
-                    id={'Mid-Season-Sale'}
-                    folder={'mid-season-image'}
+                    id={SaleArticle?.[0]?._id}
+                    articleData={SaleArticle?.[0]?.Article_Product_Colors}
                     SectionTitle={() => {
                         return (
                             <>
-                                <h2 className="text-2xl font-bold text-center">Mid Season Sale</h2>
+                                <h2 className="text-2xl font-bold text-center">{SaleArticle?.[0]?.Article_Title}</h2>
                             </>
                         )
                     }
@@ -27,48 +38,26 @@ function Home() {
                 />
             </div>
             <MainBestsellersSection/>
-            <div>
-                <MainSaleEventSlides
-                    id={'POPULAR-RIGHT-NOW'}
-                    folder={'mid-season-image'}
-                    SectionTitle={() => {
-                        return (
-                            <>
-                                <h2 className="text-2xl font-bold text-center">POPULAR RIGHT NOW</h2>
-                            </>
-                        )
-                    }
-                    }
-                />
-            </div>
-            <div>
-                <MainSaleEventSlides
-                    id={'How-do-you-train'}
-                    folder={'mid-season-image'}
-                    SectionTitle={() => {
-                        return (
-                            <>
-                                <h2 className="text-2xl font-bold text-center">How do you train?</h2>
-                            </>
-                        )
-                    }
-                    }
-                />
-            </div>
-            <div>
-                <MainSaleEventSlides
-                    id={'WAIT-THERE’S-MORE…'}
-                    folder={'mid-season-image'}
-                    SectionTitle={() => {
-                        return (
-                            <>
-                                <h2 className="text-2xl font-bold text-center">WAIT THERE’S MORE…</h2>
-                            </>
-                        )
-                    }
-                    }
-                />
-            </div>
+            {
+                SaleArticle?.slice(1)?.map(item => {
+                    return (
+                        <div>
+                            <MainSaleEventSlides
+                                id={item._id}
+                                articleData={item.Article_Product_Colors}
+                                SectionTitle={() => {
+                                    return (
+                                        <>
+                                            <h2 className="text-2xl font-bold text-center">{item?.Article_Title}</h2>
+                                        </>
+                                    )
+                                }
+                                }
+                            />
+                        </div>
+                    )
+                })
+            }
         </>
     );
 }

@@ -1,0 +1,120 @@
+.apply-promotion-button {
+    background-color: black !important; /* Black for Apply Promotion */
+    color: white !important;
+    font-weight: bold !important;
+    padding: var(--space-2);
+    cursor: pointer !important;
+}
+
+.purchase-button {
+    background-color: black;
+    color: white;
+    padding-block: 1.5rem !important;
+}
+
+.payment-content {
+    width: 100%;
+    padding: 3rem;
+}
+@import "@radix-ui/colors/black-alpha.css";
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/violet.css";
+
+/* reset */
+button,
+h3 {
+    all: unset;
+}
+.payment-method-select{
+    border: 1px solid black;
+}
+
+.payment-method-select .AccordionRoot {
+    background-color: #6e6e6e; /* Changed from var(--mauve-6) to black */
+    box-shadow: 0 2px 10px var(--black-a4);
+}
+
+.payment-method-select .AccordionItem {
+    overflow: hidden;
+    margin-top: 1px;
+    background-color: #7c7c7c; /* Changed to black */
+}
+
+.payment-method-select .AccordionItem:first-child {
+    margin-top: 0;
+}
+
+.payment-method-select .AccordionItem:last-child {
+}
+
+.payment-method-select .AccordionItem:focus-within {
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 0 2px var(--mauve-12);
+}
+
+.payment-method-select .AccordionHeader {
+    display: flex;
+}
+
+.payment-method-select .AccordionTrigger {
+    font-family: inherit;
+    background-color: #dadada; /* Changed from transparent to black */
+    padding: 0 20px;
+    height: 45px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    line-height: 1;
+    color: black;
+    box-shadow: 0 1px 0 var(--mauve-6);
+}
+
+.payment-method-select .AccordionTrigger:hover {
+    background-color: #d3d3d3; /* Darker black shade for hover effect */
+}
+
+.payment-method-select .AccordionContent {
+    overflow: hidden;
+    font-size: 15px;
+    color: var(--mauve-11);
+    background-color: white; /* Changed from var(--mauve-2) to black */
+}
+.payment-method-select .AccordionContent[data-state="open"] {
+    animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
+}
+.payment-method-select  .AccordionContent[data-state="closed"] {
+    animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.payment-method-select  .AccordionContentText {
+    padding: 15px 20px;
+}
+
+.payment-method-select  .AccordionChevron {
+    color: black;
+    transition: transform 300ms cubic-bezier(0.87, 0, 0.13, 1);
+}
+.payment-method-select .AccordionTrigger[data-state="open"] > .AccordionChevron {
+    transform: rotate(180deg);
+}
+
+@keyframes slideDown {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--radix-accordion-content-height);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        height: var(--radix-accordion-content-height);
+    }
+    to {
+        height: 0;
+    }
+}

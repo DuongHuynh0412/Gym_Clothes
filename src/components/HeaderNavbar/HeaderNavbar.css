@@ -1,0 +1,27 @@
+.nav-menu-content {
+    position: absolute;
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /*transform: translateY(10px);*/
+}
+
+.nav-menu-content.open {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav-item.active {
+    font-weight: bold;
+}
+
+.nav-menu-column {
+    min-width: 150px;
+}
+
+.nav-menu-image {
+    width: 150px;
+    height: auto;
+}

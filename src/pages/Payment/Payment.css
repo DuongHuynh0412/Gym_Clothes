@@ -1,0 +1,65 @@
+.payment-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-5);
+}
+
+/*.payment-content {*/
+/*    background: white;*/
+/*    padding: var(--space-4);*/
+/*    border-radius: var(--radius-2);*/
+/*    box-shadow: var(--shadow-1);*/
+/*}*/
+
+.express-button {
+    flex: 1;
+    height: 40px;
+    font-weight: bold;
+}
+
+.express-button.paypal {
+    background-color: #FFC107; /* Yellow for PayPal */
+    color: black;
+}
+
+.express-button.google {
+    background-color: #4285F4; /* Blue for Google Pay */
+    color: white;
+}
+
+.order-summary{
+    background-color: rgb(237, 237, 237) !important;
+}
+
+.total-line {
+    border-top: 1px solid var(--gray-5);
+    padding-top: var(--space-3);
+    margin-top: var(--space-3);
+}
+
+.pay-now {
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: var(--space-3);
+    border-radius: var(--radius-2);
+}
+
+.ml-2 {
+    margin-left: var(--space-2);
+}
+
+.w-full {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .express-button {
+        height: 35px;
+        font-size: var(--font-size-1);
+    }
+    .w-1/2, .w-1/4 {
+    width: 100%;
+}
+}
